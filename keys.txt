@@ -1,0 +1,44 @@
+
+FAT_YEARMONTH
+
+FAT_DAY
+
+FAT_TIME
+
+FATALITY_ID: fatality_id Ex: 17582, 17590, 17597, 18222
+(ID assigned by NWS to denote the individual fatality that occurred)
+
+EVENT_ID:
+FATALITY_TYPE:(D = Direct Fatality; I = Indirect Fatality; assignment of this is determined by NWS software;
+details below are from NWS Directve 10-1605 at
+http://www.nws.noaa.gov/directives/sym/pd01016005curr.pdf, Section 2.6)
+
+FATALITY_DATE: MM/DD/YYYY hh:mm (time is usually 00.00)
+
+FATALITY_AGE: The age in years of the fatality (sometimes ‘null’ if unknown)
+
+FATALITY_SEX: The gender of the fatality (sometimes ‘null’ if unknown)
+
+FATALITY_LOCATION: Direct Fatality Location Table
+BF Ball Field
+BO Boating
+BU Business
+CA Camping
+CH Church
+EQ Heavy Equip/Construction
+GF Golfing
+IW In Water
+LS Long Span Roof
+MH Mobile/Trailer Home
+OT Other/Unknown
+OU Outside/Open Areas
+PH Permanent Home
+PS Permanent Structure
+SC School
+TE Telephone
+UT Under Tree
+VE Vehicle and/or Towed Trailer
+
+
+EVENT_YEARMONTH:
+
