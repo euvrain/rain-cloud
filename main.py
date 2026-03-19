@@ -38,8 +38,9 @@ current_wind_gusts_10m = current.Variables(3).Value()
 current_precipitation = current.Variables(4).Value()
 current_surface_pressure = current.Variables(5).Value()
 
+current_temperature_2m_f = current_temperature_2m * 9/5 + 32
 print(f"\nCurrent time: {current.Time()}")
-print(f"Current temperature_2m: {current_temperature_2m}")
+print(f"Current temperature_2m (F): {current_temperature_2m_f:.1f}°F")
 print(f"Current relative_humidity_2m: {current_relative_humidity_2m}")
 print(f"Current wind_speed_10m: {current_wind_speed_10m}")
 print(f"Current wind_gusts_10m: {current_wind_gusts_10m}")
