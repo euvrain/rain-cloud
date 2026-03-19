@@ -1,18 +1,23 @@
 
 import pandas as pd
+import numpy as np
 import requests_cache
 from retry_requests import retry
+from sklearn.metrics.pairwise import haversine_distances
+from math import radians
+import openmeteo_requests
+
 
 lcd_df = pd.read_csv("data/lcd_d.csv", low_memory=False)
-storm_df_2018 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2018_c20260224.csv", low_memory=False)
-storm_df_2019 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2019_c20260116.csv", low_memory=False)
-storm_df_2020 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2020_c20260116.csv", low_memory=False)
-storm_df_2021 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2021_c20250520.csv", low_memory=False)
-storm_df_2022 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2022_c20250721.csv", low_memory=False)
-storm_df_2023 = pd.read_csv("ddata/StormEvents_fatalities-ftp_v1.0_d2023_c20260116.csv", low_memory=False)
-storm_df_2024 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2024_c20260116.csv", low_memory=False)
-storm_df_2025 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2025_c20260224.csv", low_memory=False)
-
+storm_df_2018 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2018_c20260316.csv", low_memory=False)
+storm_df_2019 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2019_c20260316.csv", low_memory=False)
+storm_df_2020 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2020_c20260316.csv", low_memory=False)
+storm_df_2021 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2021_c20260316.csv", low_memory=False)
+storm_df_2022 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2022_c20260316.csv", low_memory=False)
+storm_df_2023 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2023_c20260316.csv", low_memory=False)
+storm_df_2024 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2024_c20260316.csv", low_memory=False)
+storm_df_2025 = pd.read_csv("data/StormEvents_details-ftp_v1.0_d2025_c20260318.csv", low_memory=False)
+storm_df = pd.concat([storm_df_2018, storm_df_2019, storm_df_2020, storm_df_2021, storm_df_2022, storm_df_2023, storm_df_2024, storm_df_2025], ignore_index=True)
 print("=== LCD ===")
 print(lcd_df.columns.tolist())
 print(lcd_df.head(2))
@@ -21,7 +26,10 @@ print(lcd_df.dtypes[['DATE', 'HourlyWindSpeed', 'HourlyStationPressure']].to_str
 print("\n=== STORM EVENTS ===")
 print(storm_df.columns.tolist())
 print(storm_df.head(2))
-print(storm_df.dtypes[['BEGIN_DATE_TIME', 'STATE', 'EVENT_TYPE']].to_string())
+# Check if the columns exist before printing their dtypes
+required_columns = ['BEGIN_DATE_TIME', 'STATE', 'EVENT_TYPE']
+existing_columns = [col for col in required_columns if col in storm_df.columns]
+print(storm_df.dtypes[existing_columns])
 
 #Open - Meteo API for live weather forecasts
 import openmeteo_requests
