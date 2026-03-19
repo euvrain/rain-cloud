@@ -6,6 +6,7 @@ from retry_requests import retry
 lcd_df = pd.read_csv("data/lcd_d.csv", low_memory=False)
 storm_df_2018 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2018_c20260224.csv", low_memory=False)
 storm_df_2019 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2019_c20260116.csv", low_memory=False)
+storm_df_2020 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2020_c20260116.csv", low_memory=False)
 
 print("=== LCD ===")
 print(lcd_df.columns.tolist())
