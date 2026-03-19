@@ -1,10 +1,24 @@
-#Open - Meteo API for live weather forecasts
-import openmeteo_requests
 
 import pandas as pd
 import requests_cache
 from retry_requests import retry
 
+lcd_df = pd.read_csv("data/lcd_d.csv", low_memory=False)
+storm_df_2018 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2018_c20260224.csv", low_memory=False)
+storm_df_2019 = pd.read_csv("data/StormEvents_fatalities-ftp_v1.0_d2019_c20260116.csv", low_memory=False)
+
+print("=== LCD ===")
+print(lcd_df.columns.tolist())
+print(lcd_df.head(2))
+print(lcd_df.dtypes[['DATE', 'HourlyWindSpeed', 'HourlyStationPressure']].to_string())
+
+print("\n=== STORM EVENTS ===")
+print(storm_df.columns.tolist())
+print(storm_df.head(2))
+print(storm_df.dtypes[['BEGIN_DATE_TIME', 'STATE', 'EVENT_TYPE']].to_string())
+
+#Open - Meteo API for live weather forecasts
+import openmeteo_requests
 # Setup the Open-Meteo API client with cache and retry on error
 cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
 retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
