@@ -1,1 +1,9 @@
+# Raw data — too large for GitHub
+data(local)/
 
+
+.cache/
+__pycache__/
+*.pkl
+.env
+.DS_Store
