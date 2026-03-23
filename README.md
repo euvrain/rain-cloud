@@ -1,2 +1,2 @@
 # rain-cloud
-severe weather event predictor
+severe weather event predictor v0
